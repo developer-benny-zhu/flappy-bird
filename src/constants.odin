@@ -1,0 +1,6 @@
+package src
+
+WINDOW_WIDTH :: 800
+WINDOW_HEIGHT :: 600
+WINDOW_FPS :: 60
+WINDOW_TITLE :: "Flappy Bird"
