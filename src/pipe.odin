@@ -9,5 +9,5 @@ pipe_draw :: proc(p: ^Pipe) {
 }
 
 pipe_update :: proc(p: ^Pipe) {
-    
+    p.sprite_2d.transform_2d.position.x -= 5.0
 }
