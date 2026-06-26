@@ -14,6 +14,7 @@ Pipe_Pair :: struct {
 Pipe_Manager :: struct {
     texture: raylib.Texture2D,
     pairs:   [4]Pipe_Pair,
+    score: ^i32
 }
 
 randomize_pipe_height :: proc(pair: ^Pipe_Pair, x_pos: f32, texture_height: i32) {
@@ -47,17 +48,22 @@ pipe_manager_update :: proc(p_m: ^Pipe_Manager) {
     for &pair in p_m.pairs {
         pair.top.transform_2d.position.x -= 3.0
         pair.bottom.transform_2d.position.x -= 3.0
-        if pair.top.transform_2d.position.x < -f32(p_m.texture.width) {
+        if pipe_pair_is_offscreen(&pair, p_m.texture.width) {
             furthest_x: f32 = 0.0
             for other_pair in p_m.pairs {
                 if other_pair.top.transform_2d.position.x > furthest_x {
                     furthest_x = other_pair.top.transform_2d.position.x
                 }
             }
+            p_m.score^ += 1
             new_x := furthest_x + PIPE_DISTANCE
             randomize_pipe_height(&pair, new_x, p_m.texture.height)
         }
     }
+}
+
+pipe_pair_is_offscreen :: proc(pair: ^Pipe_Pair, texture_width: i32) -> bool {
+    return pair.top.transform_2d.position.x < -f32(texture_width)
 }
 
 pipe_manager_draw :: proc(p_m: ^Pipe_Manager) {
