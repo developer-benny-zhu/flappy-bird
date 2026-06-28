@@ -29,10 +29,10 @@
 
 <!-- PROJECT LOGO -->
 <div align="center">
-  <h3 align="center">Pong</h3>
+  <h3 align="center">Flappy Bird</h3>
 
   <p align="center">
-    A pong game.
+    A flappy bird game.
     <br />
     <br />
     <a href="https://github.com/developer-benny-zhu/flappy-bird"><strong>Explore the docs »</strong></a>
